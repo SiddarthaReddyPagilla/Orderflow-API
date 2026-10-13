@@ -34,6 +34,18 @@ def check_inventory(warehouse_name, product_sku, requested_quantity):
 
     return False
 
+def reserve_inventory(warehouse_name, product_sku, requested_quantity):
+
+    # Step 1: Check if enough inventory is available
+    if not check_inventory(warehouse_name, product_sku, requested_quantity):
+        return False
+
+    # Step 2: Reduce the available inventory
+    inventory[warehouse_name][product_sku] -= requested_quantity
+
+    # Step 3: Confirm the reservation was successful
+    return True
+
 
 if __name__ == "__main__":
     print("DispatchForge - Inventory Check")
